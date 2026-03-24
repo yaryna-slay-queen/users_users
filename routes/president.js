@@ -7,8 +7,8 @@ router.get('/', async function(req, res, next) {
   const rowPresident = president.rows.map(p => {
     return {
       ...p,
-      created_at_time: s.created_at.toLocaleTimeString(), 
-      created_at_date: s.created_at.toLocaleDateString()
+      created_at_time: p.created_at.toLocaleTimeString(), 
+      created_at_date: p.created_at.toLocaleDateString()
     }
   })
 
