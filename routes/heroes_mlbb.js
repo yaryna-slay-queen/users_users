@@ -11,11 +11,11 @@ router.get('/', async function(req, res, next) {
       created_at: w.created_at.toLocaleDateString()
     }
   })
-  res.render('herose_table', { heroes: rowheroes || [] });
+  res.render('herose_mlbb_table', { heroes: rowheroes || [] });
 });
 
 router.get("/add", (req, res) => {
-  res.render("forms/heroes_form", { isEdit: false });
+  res.render("forms/herose_mlbb_form", { isEdit: false });
 });
 
 router.post("/add", async (req, res) => {
@@ -57,7 +57,7 @@ router.get("/edit/:id", async (req, res) => {
     if (result.rows.length === 0) return res.status(400).send("Hero not found");
 
     const hero = result.rows[0];
-    res.render("forms/heroes_form", { hero, isEdit: true });
+    res.render("forms/herose_mlbb_form", { hero, isEdit: true });
   } catch (err) {
     res.status(500).send("Error loading edit form");
   }
