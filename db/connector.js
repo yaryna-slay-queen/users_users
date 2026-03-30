@@ -22,7 +22,7 @@ createTableQueries.push(`
 );
    `);
 createTableQueries.push(`
- CREATE TABLE IF NOT EXISTS sloniki1 (
+ CREATE TABLE IF NOT EXISTS sloniki (
     id SERIAL PRIMARY KEY,
     username TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
@@ -31,27 +31,25 @@ createTableQueries.push(`
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
    );
       `);
+createTableQueries.push(`
+    CREATE TABLE IF NOT EXISTS product (
+    id SERIAL PRIMARY KEY,
+    barcode TEXT UNIQUE NOT NULL,
+    name TEXT NOT NULL,
+    price INT,
+    quantity INT
+    );
+    `)
 
-for (let i = 0; i < createTableQueries.length; i++) {
-    console.log(`create string`)
-    pool.query(createTableQueries[i]);
+for await (const query of createTableQueries) {
+    try {
+        console.log(query.slice(0, query.indexOf('(')).trim()+"...")
+        await pool.query(query);
+    } catch(err) {
+        console.error("query execution error: ", err.message);
+    }
 }
 
-      
-// const initializeDatabase = async () => {
-//    console.log('-----------------------------------------------');
-//    console.log('Initializing sloniki database...');
-
-
-//    try {
-//       await 
-//    } catch (error) {
-//       console.error('!! Error initializing database');
-//       // console.error('Full error:', error);
-//       throw error;
-//    }
-// };
-
 console.log("CONNECTED!!!!!✅ ")
-
+      
 export default pool;
