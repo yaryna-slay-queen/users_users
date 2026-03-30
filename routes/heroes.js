@@ -2,7 +2,6 @@ import express from 'express';
 const router = express.Router();
 import db from '../db/connector.js';
 
-// 1. Отримання всіх героїв (Головна сторінка таблиці)
 router.get('/', async function(req, res, next) {
   try {
     const heroes = await db.query('SELECT * FROM heroes ORDER BY id ASC');
@@ -20,12 +19,10 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-// 2. Сторінка додавання нового героя
 router.get("/add", (req, res) => {
   res.render("forms/heroes_form", { isEdit: false });
 });
 
-// 3. Обробка додавання нового героя в базу
 router.post("/add", async (req, res) => {
   try {
     const { hero_name, hero_class, hero_role, attack_type } = req.body;
@@ -48,7 +45,6 @@ router.post("/add", async (req, res) => {
   }
 });
 
-// 4. Сторінка редагування існуючого героя
 router.get("/edit/:id", async (req, res) => {
   try {
     const heroId = req.params.id;
@@ -68,7 +64,6 @@ router.get("/edit/:id", async (req, res) => {
   }
 });
 
-// 5. Збереження змін після редагування
 router.post("/edit/:id", async (req, res) => {
   try {
     const heroId = req.params.id;
@@ -94,7 +89,6 @@ router.post("/edit/:id", async (req, res) => {
   }
 });
 
-// 6. Видалення героя
 router.delete("/:id", async (req, res) => {
   try {
     const heroId = req.params.id;
