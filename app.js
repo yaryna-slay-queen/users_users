@@ -43,11 +43,11 @@ app.use('/weapons', weaponRouter);
 app.use('/sloniki', slonikiRouter);
 app.use('/cars', carsRouter);
 app.use('/gym', gymRouter);
-app.use('/heroes', heroessRouter); 
+app.use('/heroes_mlbb', heroesRouter); 
 app.use('/cats', catsRouter); 
 app.use('/dhd', dhdRouter);
 app.use('/street_food', streetFoodRouter);
-app.use('/heroes', heroesRouter); 
+app.use('/heroes', heroessRouter); 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
