@@ -12,11 +12,11 @@ import weaponRouter from './routes/dead_space.js'
 import carsRouter from './routes/cars.js'
 import slonikiRouter from './routes/sloniki.js'
 import gymRouter from './routes/gym.js'
-import heroeddsRouter from './routes/heroes_mlbb.js' 
+import heroesRouter from './routes/heroes_mlbb.js' 
 import catsRouter from './routes/cats.js' 
 import dhdRouter from './routes/dhd.js'
 import streetFoodRouter from './routes/street_food.js'
-import heroesRouter from './routes/heroes.js'
+import heroessRouter from './routes/heroes.js'
 
 
 import { fileURLToPath } from 'url';
@@ -43,11 +43,11 @@ app.use('/weapons', weaponRouter);
 app.use('/sloniki', slonikiRouter);
 app.use('/cars', carsRouter);
 app.use('/gym', gymRouter);
-app.use('/heroes', heroesRouter); 
+app.use('/heroes', heroessRouter); 
 app.use('/cats', catsRouter); 
 app.use('/dhd', dhdRouter);
 app.use('/street_food', streetFoodRouter);
-
+app.use('/heroes', heroesRouter); 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
