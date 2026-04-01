@@ -4,12 +4,14 @@ import pg from 'pg';
 const { Pool } = pg;
 
 const pool = new Pool({
-    connectionString: process.env.DB_URL,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
-//Add table creation
 const createTableQueries = [];
-
 createTableQueries.push(`
     CREATE TABLE IF NOT EXISTS heroes1 (
     id SERIAL PRIMARY KEY,
@@ -40,7 +42,16 @@ createTableQueries.push(`
     quantity INT
     );
     `)
-
+createTableQueries.push(`
+    CREATE TABLE IF NOT EXISTS SLONIKI (
+    id SERIAL PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    age TEXT NOT NULL,
+    place_of_birth TEXT NOT NULL,           
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   );
+      `);
 for await (const query of createTableQueries) {
     try {
         console.log(query.slice(0, query.indexOf('(')).trim()+"...")
