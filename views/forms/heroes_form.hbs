@@ -4,29 +4,37 @@
   <meta charset="UTF-8">
   <title>{{#if isEdit}}Edit Hero{{else}}Add Hero{{/if}}</title>
   <style>
-    /* Базові налаштування у стилі iOS Dark Mode */
     html, body {
-      background-color: #000000;
-      color: #F2F2F7;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center; /* Зцентровано по вертикалі і горизонталі */
+     background-image: url('/images/moon-back.png'); 
+    background-size: cover;          
+    background-position: center;    
+    background-attachment: fixed;
       min-height: 100vh;
-      box-sizing: border-box;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #F2F2F7;
+    box-sizing: border-box;
+    padding: 50px 20px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
     }
     
-    /* Контейнер-картка */
-    .form-container {
-      background-color: #1C1C1E; /* Темно-сірий колір карток iOS */
-      padding: 30px;
+ .container {
+      background-color: #1C1C1E; 
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      padding: 20px;
       width: 100%;
-      max-width: 400px;
+      max-width: 1000px;
       box-sizing: border-box;
+      
+      box-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.2),   
+        0 0 15px rgba(255, 255, 255, 0.4),    
+        0 0 30px rgba(255, 255, 255, 0.2),    
+        0 0 60px rgba(255, 255, 255, 0.1);    
+      
+      position: relative; 
     }
 
     h2 {
@@ -43,7 +51,7 @@
       margin-bottom: 20px;
     }
 
-    /* Стиль підписів як в iOS-налаштуваннях */
+   
     label {
       display: block;
       margin-bottom: 8px;
@@ -54,16 +62,15 @@
       letter-spacing: 0.5px;
     }
 
-    /* Поля вводу */
     input[type="text"] {
       width: 100%;
       padding: 14px;
       border: none;
-      border-radius: 10px; /* Заокруглення як в iOS */
-      background-color: #2C2C2E; /* Світліший сірий для інпутів */
+      border-radius: 10px; 
+      background-color: #2C2C2E; 
       color: #FFFFFF;
       box-sizing: border-box;
-      font-size: 16px; /* 16px запобігає автозуму на телефонах */
+      font-size: 16px; 
       transition: box-shadow 0.2s ease, background-color 0.2s;
     }
 
@@ -71,20 +78,19 @@
       color: #636366;
     }
 
-    /* Ефект підсвічування при введенні тексту (iOS Blue) */
+  
     input[type="text"]:focus {
       outline: none;
       background-color: #3A3A3C;
       box-shadow: 0 0 0 2px #0A84FF; 
     }
 
-    /* Головна кнопка */
     .btn-submit {
-      background-color: #0A84FF; /* iOS Blue */
+      background-color: #0A84FF; 
       color: white;
       padding: 14px 15px;
       border: none;
-      border-radius: 12px;
+      border-radius: 120px;
       cursor: pointer;
       font-weight: 600;
       width: 100%;
@@ -93,13 +99,14 @@
       transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.2s;
     }
 
-    /* Ефект збільшення при наведенні */
+  
     .btn-submit:hover {
-      transform: scale(1.03);
-      filter: brightness(1.1);
+      transform: scale(1.05); 
+      filter: brightness(1.1); 
+      box-shadow: 0 0 15px rgba(10, 132, 255, 0.6); 
     }
 
-    /* Посилання для скасування */
+ 
     .cancel-link {
       display: block;
       text-align: center;
@@ -129,7 +136,7 @@
       </div>
 
       <div class="form-group">
-        <label>Primary Attribute</label>
+        <label>Hero class</label>
         <input type="text" name="hero_class" value="{{hero.primary_attribute}}" required placeholder="Студент, викладач, робочий">
       </div>
 
@@ -139,7 +146,7 @@
       </div>
 
       <div class="form-group">
-        <label>Difficulty</label>
+        <label>Attack</label>
         <input type="text" name="attack_type" value="{{hero.attack_type}}" required placeholder="Моральний, фізичний">
       </div>
 

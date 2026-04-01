@@ -4,28 +4,37 @@
   <meta charset="UTF-8">
   <title>Heroes</title>
   <style>
-
     html, body {
-      background-color: #000000; 
-      min-height: 100vh;
-      margin: 0;
-      /* Використовуємо системний шрифт Apple */
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: #F2F2F7;
-      box-sizing: border-box;
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center; 
-    }
+     background-image: url('/images/moon-back.png'); 
+    background-size: cover;          
+    background-position: center;    
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #F2F2F7;
+    box-sizing: border-box;
+    padding: 50px 20px 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
 
     .container {
-      background-color: #1C1C1E; /* Темно-сірий колір карток iOS */
+      background-color: #1C1C1E; 
       border-radius: 16px;
       padding: 20px;
       width: 100%;
       max-width: 1000px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      box-sizing: border-box;
+      
+      box-shadow: 
+        0 0 5px rgba(255, 255, 255, 0.2),   
+        0 0 15px rgba(255, 255, 255, 0.4),    
+        0 0 30px rgba(255, 255, 255, 0.2),    
+        0 0 60px rgba(255, 255, 255, 0.1);    
+      
+      position: relative; 
     }
 
     .top-buttons {
@@ -35,86 +44,98 @@
       align-items: center;
     }
 
-    /* Спільні стилі для кнопок */
     .btn {
       border: none;
-      border-radius: 12px; /* Приємне заокруглення */
+      border-radius: 12px;
       padding: 10px 18px;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
-      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.2s;
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.2s, box-shadow 0.2s;
     }
-
-    /* Ефект збільшення при наведенні */
+    
     .btn:hover {
       transform: scale(1.05);
       filter: brightness(1.1);
     }
 
-    /* Індивідуальні кольори кнопок (палітра iOS) */
     .btn-back {
-      background-color: #3A3A3C; /* Системний сірий */
+      background-color: #3A3A3C;
       color: #FFFFFF;
+    }
+    .btn-back:hover {
+      transform: scale(1.05); 
+      filter: brightness(1.1); 
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); 
     }
     
-    .btn-add {
-      background-color: #0A84FF; /* iOS Blue */
+   .btn-add {
+      background-color: #0A84FF;
       color: #FFFFFF;
     }
-
+      .btn-add:hover {
+      transform: scale(1.05); 
+      filter: brightness(1.1); 
+      box-shadow: 0 0 15px rgba(10, 132, 255, 0.6); 
+    }
+   
     .btn-edit {
       background-color: #3A3A3C; 
-      color: #0A84FF; /* Синій текст на сірому фоні для другорядних дій */
+      color: #0A84FF;
       padding: 8px 14px;
+    }
+     .btn-edit:hover {
+      transform: scale(1.05); 
+      filter: brightness(1.1); 
+      box-shadow: 0 0 15px rgba(10, 132, 255, 0.4);
     }
 
     .btn-delete {
-      background-color: rgba(255, 69, 58, 0.15); /* Прозорий червоний фон */
-      color: #FF453A; /* iOS Red */
+      background-color: rgba(255, 69, 58, 0.15);
+      color: #FF453A;
       padding: 8px 14px;
     }
+    .btn-delete:hover {
+      transform: scale(1.05); 
+      filter: brightness(1.1); 
+      box-shadow: 0 0 15px rgba(255, 69, 58, 0.6); 
+    }
 
-    /* Таблиця */
     table {
       border-collapse: collapse;
       text-align: left;
       width: 100%;
     }
 
-    /* Шапка таблиці */
     th {
-      color: #8E8E93; /* Світло-сірий текст для заголовків */
+      color: #8E8E93;
       font-size: 13px;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       padding: 12px 16px;
-      border-bottom: 1px solid #3A3A3C; /* Тонка лінія знизу */
+      border-bottom: 1px solid #3A3A3C;
     }
 
-    /* Звичайні комірки */
     td {
       padding: 16px;
-      border-bottom: 1px solid #2C2C2E; /* Дуже слабка лінія між рядками */
+      border-bottom: 1px solid #2C2C2E;
       vertical-align: middle;
       font-size: 15px;
     }
 
-    /* Прибираємо лінію в останнього рядка, щоб виглядало охайно */
     tr:last-child td {
       border-bottom: none;
     }
 
-    /* Легке підсвічування рядка при наведенні миші (ефект вибору в iOS) */
     tr:hover td {
       background-color: rgba(255, 255, 255, 0.03);
     }
     
-    /* Контейнер для дій в таблиці */
-    .actions-cell {
+    
+    .actions-wrapper {
       display: flex;
       gap: 8px;
     }
@@ -132,9 +153,9 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>Primary Attribute</th>
+      <th>Hero class</th>
       <th>Role</th>
-      <th>Difficulty</th>
+      <th>Attack </th>
       <th>Created</th>
       <th>Actions</th>
     </tr>
@@ -147,11 +168,13 @@
       <td>{{role}}</td>
       <td>{{attack_type}}</td>
       <td style="color: #8E8E93; font-size: 13px;">{{created_at_date}}<br>{{created_at_time}}</td>
-      <td class="actions-cell">
-        <a href="/heroes/edit/{{id}}" style="text-decoration: none;">
-          <button class="btn btn-edit">Edit</button>
-        </a>
-        <button class="btn btn-delete delete-hero-btn" data-id="{{id}}">Delete</button>
+      <td>
+        <div class="actions-wrapper">
+          <a href="/heroes/edit/{{id}}" style="text-decoration: none;">
+            <button class="btn btn-edit">Edit</button>
+          </a>
+          <button class="btn btn-delete delete-hero-btn" data-id="{{id}}">Delete</button>
+        </div>
       </td>
     </tr>
     {{/each}}
